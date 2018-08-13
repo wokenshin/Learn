@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://172.16.3.224:3306/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+
+
+  #公寓mysql 192.168.0.5 公司mysql 172.16.3.166 具体的值以 虚拟机服务器中的为准 通过 ifconfig 查看 eth1中的 inet
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  jackson:
+    default-property-inclusion: non_null #当后台返回的结果中 有属性为null时，就不返回该简直对给前端
+
+  #配置redis信息 由于 redis的配置在 虚拟机上的 所以下面的 ip地址 和 上面的 mysql ip地址 一致
+  redis:
+    host: 172.16.3.224
+    pool: 6379
+    password:
+
+#server:
+#  content-path: /sell
+server:
+  servlet:
+    context-path: /sell # 与教程不同 可能是版本问题 老的方式失效 如下
+
+#设置日志 为了看到 mybatis的sql语句 一般就是开发的时候这么干
+logging:
+  level:
+   com.imooc.dateobject.mapper: trace
+
+#mybatis 配置xml文件所在位置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+
+
+
+
+
+
+
