@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--导入thymeleaf-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>成功！</h1>
+    <!-- text="${hello} 的意思是将div里面的内容设置为 指定值 -->
+    <div th:text="${hello}">如果没有获取后端数据 这里就会显示默认的内容 可以尝试 直接打开该静态页面</div>
+
+    <hr/>
+        <div th:text="${hello}"></div>
+        <div th:utext="${hello}"></div>
+    <hr/>
+
+    <!-- th:each 每次遍历都会生成一次当前标签 -->
+    <h4 th:text="${user}" th:each="user : ${users}"></h4>
+    <hr/>
+    <h4>
+        <span th:each="user : ${users}">[[${user}]]</span>
+    </h4>
+    <hr/>
+
+</body>
+</html>
