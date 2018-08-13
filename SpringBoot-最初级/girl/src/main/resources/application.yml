@@ -1,0 +1,38 @@
+#我们创建2个配置文件
+#一个用于开发环境：application.properties-dev.yml
+
+#一个用于生产环境：application.properties-prod.yml
+
+#如果我们只创建一个 yml文件的话 就是默认的使用情况了
+
+#我们在idea中 可以通过修改本文件中的配置 来觉得使用那个配置文件，也可以通过命令行 jar的启动方式 配置启动时使用的哪个配置文件
+
+
+spring:
+  profiles:
+    active: prod #prod or dev 注意 本demo中 生产环境 和 开发环境 的端口号不相同
+
+  #配置数据库相关信息
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver #配置mysql驱动 这里需要添加 maven 依赖 否则会报错
+    #原本下面是 url: dbc:mysql://127.0.0.1:3306/dbgirl  但是由于MySQL 需要验证SSL 所以添加了后续内容
+    #数据库的名字叫 dbgirl 所以我们要利用软件先在MYSQL中创建该数据库
+    #allowPublicKeyRetrieval=true 是因为报错才加上去的
+    url: jdbc:mysql://127.0.0.1:3306/dbgirl?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 12345678
+
+
+  #配置spring-data-jpa
+  jpa:
+    hibernate:
+      ddl-auto: update #这里有几个参数 它们分别代表不同的意思
+    show-sql: true
+#在控制台显示sql语句 方便开发调试
+
+#设置指定范围内的 日志级别
+logging:
+  level:
+    com:
+      example:
+        demo: trace # debug info warn error 在不设置的情况下 默认是 info级别 即只输出 info warn error 三类日志

@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+Naruto: "Hi my name is Naruto!!!"
+content: "在配置文件中使用当前配置：${Naruto} "
+
+Kenshin:
+  name: "kenshin"
+  like: "basketball"
+  gender: "femal"
+  age: 18
+
+Environment: "生产环境"
+
+#  yml文件 和 .properties 文件的功能一样 只是语法更简单
+#  注意这个属性文件的格式
